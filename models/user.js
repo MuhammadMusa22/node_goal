@@ -1,26 +1,27 @@
-const Sequelize=require('sequelize');
-const sequelize=require('../config/dbconfig.js');
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define(
+    "users",
+    {
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+      },
+      userName: {
+        type: DataTypes.STRING,
+      },
+      createdAt: {
+        type: DataTypes.DATE,
+      },
+      updatedAt: {
+        type: DataTypes.DATE,
+      }
+    },
+    {
+      timestamps:false
+    }
+  );
 
-const Users = sequelize.define('users', {
-  id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    primaryKey: true
-  },
-  userName: {
-    type: Sequelize.STRING(30),
-  },
-  createdAt: {
-    type: Sequelize.STRING(30),
-  },
-  updatedAt: {
-    type: Sequelize.STRING(30),
-  }
-}
-);
 
-module.exports=Users;
-
-
-
-
+  return User;
+};

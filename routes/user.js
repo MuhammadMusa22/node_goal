@@ -8,5 +8,8 @@ router.all('*',async (req,res,next) => {
     next();
 });
 router.get('/users',userController.getUsers);
+router.post('/users',userController.createUser);
+router.put('/users/:userId',userController.updateUser);
+router.get('/users/:userId',userController.getSingleUserDetails);
 
 module.exports=router;

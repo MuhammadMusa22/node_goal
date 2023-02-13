@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { upperCase, camelCase, upperFirst } = require("lodash");
 const Sequelize = require('sequelize');
 const process = require('process');
 const basename = path.basename(__filename);
@@ -23,7 +24,8 @@ fs
   })
   .forEach(file => {
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
+    let name = upperFirst(camelCase(model.name));
+    db[name] = model;
   });
 
 Object.keys(db).forEach(modelName => {
