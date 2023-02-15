@@ -4,9 +4,6 @@ const ApiError = require("../utils/api_error");
 const { Users } = require("../models");
 
 
-let users = [];
-
-
 module.exports = {
     getUsers: async (req, res, next) => {
         try {
@@ -39,24 +36,11 @@ module.exports = {
             if (!findedUser) {
                 throw  ApiError(404, "User not found");
             }
-            const updateUser = await Users.update(
-                {
-                    userName: name
+            await findedUser.update({
+                userName:name
+            })
 
-                }, {
-                where: {
-                    id: userId
-                }
-            }
-            );
-            if (!updateUser) {
-                res.send({
-                    code: 401,
-                    success: false,
-                    message: "User data",
-                    data: "Some error occur while updating user",
-                });
-            }
+          
             res.send({
                 code: 200,
                 success: true,

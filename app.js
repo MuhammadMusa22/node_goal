@@ -1,7 +1,7 @@
 const express = require('express');
 const userRouter = require('./routes/user');
-// const orderRouter = require('./routes/order');
-// const shopRouter = require('./routes/shop');
+const subjectsRouter = require('./routes/subject');
+const teachersRouter = require('./routes/teacher');
 var PORT = process.env.PORT || 4000;
 
 const app = express();
@@ -10,7 +10,9 @@ const app = express();
 app.use(express.json());
 
 
-app.use('/api', userRouter); //         /api
+app.use('/api', userRouter); 
+app.use('/api', subjectsRouter);
+app.use('/api', teachersRouter);
 // app.use('/api', orderRouter); //        /api/users/orders
 // app.use('/api', shopRouter);  //        /api/users/shops
 

@@ -5,7 +5,18 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "db:migrate:create": "npx sequelize migration:generate --name"
+    "start": "NODE_ENV=development node server.js | ./node_modules/.bin/bunyan",
+    "server": "nodemon server.js | ./node_modules/.bin/bunyan",
+    "start-server": "./node_modules/pm2/bin/pm2 start server.js",
+    "start-test": "./node_modules/pm2/bin/pm2 start server.js --no-daemon --watch --no-autorestart --env test",
+    "stop-server": "./node_modules/pm2/bin/pm2 stop server.js",
+    "logs": "./node_modules/pm2/bin/pm2 logs",
+    "test-coverage": "nyc npm run test",
+    "lint": "npx eslint .",
+    "prettier": "npx prettier -c .",
+    "db:migrate": "npx sequelize db:migrate",
+    "db:migrate:create": "npx sequelize migration:generate --name",
+    "db:migrate:undo": "npx sequelize db:migrate:undo"
   },
   "author": "",
   "license": "ISC",
